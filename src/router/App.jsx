@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import NotFound from '../pages/NotFound/NotFound';
 import Home from '../pages/Home/Home';
 import Programas from '../pages/Programas/Programas';
+import Nosotros from '../pages/Nosotros/Nosotros';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/programas" element={<Programas />} />
+        <Route path="/nosotros" element={<Nosotros />} />
         
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<NotFound />} />
