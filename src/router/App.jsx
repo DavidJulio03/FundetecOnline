@@ -4,6 +4,7 @@ import Home from '../pages/Home/Home';
 import Programas from '../pages/Programas/Programas';
 import Nosotros from '../pages/Nosotros/Nosotros';
 import FAQ from '../pages/FAQ/FAQ';
+import Blog from '../pages/Blog/Blog';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/programas" element={<Programas />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/preguntas" element={<FAQ />} />
+        <Route path="/blog" element={<Blog />} />
         
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<NotFound />} />
