@@ -3,6 +3,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import Home from '../pages/Home/Home';
 import Programas from '../pages/Programas/Programas';
 import Nosotros from '../pages/Nosotros/Nosotros';
+import FAQ from '../pages/FAQ/FAQ';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/programas" element={<Programas />} />
         <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/preguntas" element={<FAQ />} />
         
         {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<NotFound />} />
