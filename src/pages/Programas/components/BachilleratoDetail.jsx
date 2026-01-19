@@ -9,28 +9,7 @@ import {
   Info,
   Clock
 } from 'lucide-react';
-
-// 1. Configuración de información detallada
-const bachiInfo = {
-  header: {
-    category: "Educación para Adultos",
-    title: "VALIDACIÓN DE",
-    highlight: "BACHILLERATO.",
-    description: "Nuestro programa de validación está regido por el Decreto 3011, permitiendo a jóvenes y adultos terminar sus estudios mediante ciclos lectivos especiales integrados (CLEI)."
-  },
-  stats: [
-    { label: "Duración", val: "3-6 Meses", icon: <Clock size={18} /> },
-    { label: "Modalidad", val: "100% Virtual", icon: <Info size={18} /> },
-    { label: "Edad mínima", val: "15+ Años", icon: <UserCheck size={18} /> }
-  ],
-  requirements: [
-    "Copia del documento de identidad al 150%.",
-    "Certificados de estudio de grados anteriores aprobados.",
-    "Tener 15 años cumplidos para básica (hasta 9°).",
-    "Tener 18 años cumplidos para media (10° y 11°).",
-    "Foto digital reciente fondo blanco."
-  ]
-};
+import bachiInfo from '../data/BachilleratoData';
 
 const BachilleratoDetail = () => {
   return (
@@ -97,21 +76,32 @@ const BachilleratoDetail = () => {
           </div>
         </div>
 
-        {/* --- CTA FINAL --- */}
+       {/* --- CTA FINAL --- */}
         <div className="mt-24 p-8 md:p-16 rounded-[48px] bg-gradient-to-r from-[#0993e2] to-[#4aa82c] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="relative z-10 text-white max-w-xl text-center md:text-left">
-            <h3 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">¿Listo para obtener tu título?</h3>
-            <p className="text-white/80 font-medium text-lg">Inicia tu proceso hoy mismo y gradúate en tiempo récord con validez nacional.</p>
-          </div>
-          <div className="relative z-10">
-            <button className="px-10 py-5 bg-white text-gray-900 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group">
-              Empezar Matrícula
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-          {/* Círculos decorativos de fondo */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -left-20 -top-20 w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
+        <div className="relative z-10 text-white max-w-xl text-center md:text-left">
+            <h3 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
+            ¿Listo para obtener tu título?
+            </h3>
+            <p className="text-white/80 font-medium text-lg">
+            Inicia tu proceso hoy mismo y gradúate en tiempo récord con validez nacional.
+            </p>
+        </div>
+        
+        <div className="relative z-10">
+            {/* Cambiado de <button> a <a> para funcionalidad de enlace */}
+            <a 
+            href={bachiInfo.cta?.href} 
+            rel="noopener noreferrer"
+            className="inline-flex px-10 py-5 bg-white text-gray-900 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all items-center gap-3 group whitespace-nowrap"
+            >
+            {bachiInfo.cta?.label || "Empezar Matrícula"}
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+        </div>
+
+        {/* Círculos decorativos de fondo */}
+        <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute -left-20 -top-20 w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
         </div>
 
       </div>

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle2, Clock, Award, Users, BookOpen, ArrowRight } from 'lucide-react';
+import { X, CheckCircle2, Clock, Award, BookOpen, ArrowRight } from 'lucide-react';
 
 const TecnicoModal = ({ program, onClose }) => {
+    console.log(program)
   if (!program) return null;
 
-  // Bloqueo de scroll para mejorar la UX al estar abierto
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'unset'; };
@@ -12,7 +12,6 @@ const TecnicoModal = ({ program, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-      {/* Overlay con cierre al clickear fuera */}
       <div 
         className="absolute inset-0 bg-[#081b29]/90 backdrop-blur-md animate-in fade-in duration-300"
         onClick={onClose}
@@ -40,14 +39,14 @@ const TecnicoModal = ({ program, onClose }) => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100">
-              <Clock className="text-[#0993e2]" />
+              <Clock className="text-[#0993e2]" size={24} />
               <div>
                 <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Duración</p>
                 <p className="text-sm font-bold text-gray-900">{program.duration}</p>
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100">
-              <Award className="text-[#4aa82c]" />
+              <Award className="text-[#4aa82c]" size={24} />
               <div>
                 <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Título</p>
                 <p className="text-sm font-bold text-gray-900">Técnico Laboral</p>
@@ -61,7 +60,7 @@ const TecnicoModal = ({ program, onClose }) => {
           <div className="mb-10">
             <h4 className="text-[10px] font-black text-[#0993e2] uppercase tracking-[0.3em] mb-3">Descripción del Perfil</h4>
             <p className="text-gray-500 font-medium leading-relaxed">
-              {program.description || "Formación integral diseñada para desarrollar competencias específicas en el área, permitiendo una rápida inserción en el mercado laboral bajo estándares de calidad institucional."}
+              {program.description}
             </p>
           </div>
 
@@ -71,7 +70,7 @@ const TecnicoModal = ({ program, onClose }) => {
               Módulos del Pensum
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {(program.curriculum || ["Competencias Básicas", "Ética Profesional", "Prácticas Dirigidas", "Herramientas Digitales"]).map((modulo, i) => (
+              {program.curriculum?.map((modulo, i) => (
                 <div key={i} className="flex items-center gap-3 p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 transition-colors">
                   <CheckCircle2 size={16} className="text-[#4aa82c]" />
                   <span className="text-sm font-bold text-gray-700">{modulo}</span>
@@ -80,15 +79,26 @@ const TecnicoModal = ({ program, onClose }) => {
             </div>
           </div>
 
+          {/* CTA SECCIÓN MEJORADA */}
           <div className="bg-[#081b29] rounded-[32px] p-8 text-white relative overflow-hidden">
             <div className="relative z-10 text-center sm:text-left">
               <h4 className="text-xl font-black mb-2">Inicia tu inscripción</h4>
-              <p className="text-gray-400 text-sm mb-6">Pregunta por nuestras opciones de financiación y becas disponibles.</p>
-              <button className="w-full sm:w-auto px-8 py-4 bg-[#4aa82c] hover:bg-white hover:text-gray-900 text-white rounded-[18px] font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-3">
+              <p className="text-gray-400 text-sm mb-6">Pregunta por nuestras opciones de financiación y becas disponibles para <strong>{program.title}</strong>.</p>
+              
+              {/* Botón convertido a Enlace Funcional */}
+              <a 
+                href={program.action_href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full sm:w-auto px-8 py-4 bg-[#4aa82c] hover:bg-white hover:text-gray-900 text-white rounded-[18px] font-black text-[10px] uppercase tracking-widest transition-all items-center justify-center gap-3 active:scale-95"
+              >
                 Hablar con un asesor
                 <ArrowRight size={16} />
-              </button>
+              </a>
             </div>
+            
+            {/* Efecto decorativo de fondo */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#4aa82c]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
           </div>
         </div>
       </div>

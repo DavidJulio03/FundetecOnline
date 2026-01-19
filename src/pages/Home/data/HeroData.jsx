@@ -13,13 +13,13 @@ const HeroData = {
   buttons: [
     {
       label: "Matricúlate Ahora",
-      href: "./matriculas",
+      href: "#inscripcion",
       primary: true,
       icon: true
     },
     {
       label: "Ver Programas",
-      href: "./programas",
+      href: "/programas",
       primary: false,
       icon: false
     }

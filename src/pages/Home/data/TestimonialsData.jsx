@@ -46,7 +46,7 @@ const TestimonialsData = {
     title: "¿Tu historia aquí?",
     description: "Únete a los miles que ya cambiaron su futuro con nosotros.",
     buttonLabel: "Inscribirme Ahora",
-    href: "/inscripciones" // Enlace para la etiqueta <a>
+    href: "#inscripcion"
   }
 }
 

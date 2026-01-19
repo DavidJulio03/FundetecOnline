@@ -26,7 +26,12 @@ const HeaderData = {
   contact: {
     phone: "+57 300 123 4567",
     phoneLink: "tel:3001234567"
-  }
+  },
+  campusButton: {
+    label: "Campus Virtual",
+    href: "https://klicus.com.co/lp-profile/",
+    color: "#0993e2"
+  },
 }
 
 export default HeaderData

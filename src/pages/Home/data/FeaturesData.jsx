@@ -17,7 +17,7 @@ const FeaturesData = {
       desc: "Trayectoria formando líderes.",
       color: "#0993e2",
       lightColor: "bg-blue-50",
-      href: "/nosotros" // Enlace usando etiqueta <a>
+      href: "/nosotros"
     },
     { 
       icon: Laptop, 
@@ -26,7 +26,7 @@ const FeaturesData = {
       desc: "Estudia a tu propio ritmo.",
       color: "#4aa82c",
       lightColor: "bg-green-50",
-      href: "/metodologia"
+    //   href: "/metodologia"
     },
     { 
       icon: CheckCircle, 
@@ -35,7 +35,7 @@ const FeaturesData = {
       desc: "Resolución oficial vigente.",
       color: "#0993e2",
       lightColor: "bg-blue-50",
-      href: "/legalidad"
+    //   href: "/legalidad"
     },
     { 
       icon: Users, 
@@ -44,7 +44,7 @@ const FeaturesData = {
       desc: "Mentoría personalizada.",
       color: "#4aa82c",
       lightColor: "bg-green-50",
-      href: "/docentes"
+    //   href: "/docentes"
     },
   ]
 }

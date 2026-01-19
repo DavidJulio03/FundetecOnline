@@ -12,7 +12,7 @@ const TecnicosExplorer = () => {
     : tecnicosData.programs.filter(p => p.category === filter);
 
   return (
-    <section className="py-12 md:py-24 bg-gray-200/50 min-h-screen">
+    <section id={tecnicosData.id} className="py-12 md:py-24 bg-gray-200/50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera de Sección */}

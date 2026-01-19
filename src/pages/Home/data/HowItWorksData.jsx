@@ -45,7 +45,7 @@ const HowItWorksData = {
   ],
   footer: {
     buttonLabel: "Empezar mi transformación",
-    buttonHref: "/registro", // Ahora usa etiqueta <a>
+    buttonHref: "#inscripcion",
     subtext: "Sin compromisos iniciales • Asesoría 100% gratuita"
   }
 }

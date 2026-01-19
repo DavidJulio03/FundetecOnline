@@ -19,7 +19,7 @@ const ProgramsData = {
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
       duration: "3 Semestres",
       rating: "4.9",
-      href: "/programas/asistente-administrativo"
+      href: "/programas/#tecnicos"
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const ProgramsData = {
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
       duration: "3 Semestres",
       rating: "5.0",
-      href: "/programas/sistemas"
+      href: "/programas/#tecnicos"
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const ProgramsData = {
       image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=80",
       duration: "3 Semestres",
       rating: "4.8",
-      href: "/programas/contabilidad"
+      href: "/programas/#tecnicos"
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ const ProgramsData = {
       image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=600&q=80",
       duration: "3 Semestres",
       rating: "4.9",
-      href: "/programas/primera-infancia"
+      href: "/programas/#tecnicos"
     }
   ]
 }

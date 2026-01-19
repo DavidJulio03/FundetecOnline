@@ -30,8 +30,7 @@ const EnrollmentData = {
     buttonText: "Enviar Solicitud",
     privacyText: "Respetamos tu privacidad. Datos 100% protegidos."
   },
-  // Si quisieras añadir un enlace de términos y condiciones, por ejemplo:
-  termsLink: "/politica-privacidad"
+//   termsLink: "/politica-privacidad"
 };
 
 export default EnrollmentData

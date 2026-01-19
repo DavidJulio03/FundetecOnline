@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Target, Zap, BarChart3, ShieldCheck, Calendar, ArrowRight, CheckCircle } from 'lucide-react';
+import { X, Target, Zap, BarChart3, ShieldCheck, Calendar, ArrowRight } from 'lucide-react';
 
 const DiplomadoDrawer = ({ program, onClose }) => {
   if (!program) return null;
@@ -49,7 +49,7 @@ const DiplomadoDrawer = ({ program, onClose }) => {
             </div>
           </div>
 
-          {/* Sección 1: Impacto Profesional (Diferente a Técnicos) */}
+          {/* Sección 1: Impacto Profesional */}
           <div className="grid grid-cols-2 gap-4 mb-12">
             <div className="p-6 bg-[#f0f9ff] rounded-[32px] border border-[#bae6fd]">
               <Target className="text-[#0993e2] mb-3" size={24} />
@@ -63,7 +63,7 @@ const DiplomadoDrawer = ({ program, onClose }) => {
             </div>
           </div>
 
-          {/* Sección 2: ¿Qué aprenderás? (Cronograma Visual) */}
+          {/* Sección 2: Ruta de Aprendizaje */}
           <div className="mb-12">
             <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-8">
               <Calendar size={20} className="text-[#0993e2]" />
@@ -80,7 +80,7 @@ const DiplomadoDrawer = ({ program, onClose }) => {
             </div>
           </div>
 
-          {/* Sección 3: Certificación y Aval */}
+          {/* Sección 3: Certificación */}
           <div className="p-8 bg-gray-50 rounded-[40px] border border-gray-100 mb-12">
             <div className="flex items-start gap-4">
               <div className="shrink-0 w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
@@ -89,14 +89,18 @@ const DiplomadoDrawer = ({ program, onClose }) => {
               <div>
                 <h4 className="font-black text-gray-900 mb-1 uppercase text-xs tracking-widest">Certificación Premium</h4>
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  Al completar el programa, recibirás un diploma digital y físico avalado por la institución, con validez para tu hoja de vida profesional.
+                  Diploma avalado institucionalmente con validez para tu perfil profesional.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* CTA Persuasivo */}
-          <button className="w-full group bg-gray-900 hover:bg-[#0993e2] p-2 rounded-[24px] transition-all duration-500 shadow-xl shadow-gray-200">
+          {/* CTA Persuasivo - AHORA FUNCIONAL */}
+          <a 
+            href={program.action_href}
+            rel="noopener noreferrer"
+            className="block w-full group bg-gray-900 hover:bg-[#0993e2] p-2 rounded-[24px] transition-all duration-500 shadow-xl shadow-gray-200"
+          >
             <div className="bg-white/10 group-hover:bg-[#4aa82c] rounded-[18px] p-6 flex items-center justify-between transition-colors">
               <div className="text-left text-white">
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">Matrícula abierta</p>
@@ -106,7 +110,7 @@ const DiplomadoDrawer = ({ program, onClose }) => {
                 <ArrowRight size={20} />
               </div>
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>

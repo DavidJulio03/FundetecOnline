@@ -23,7 +23,8 @@ const diplomadosData = {
         "Estrategias Didácticas y TICs",
         "Evaluación de Aprendizajes Significativos",
         "Legislación Educativa Vigente"
-      ]
+      ],
+      action_href: '/#inscripcion'
     },
     {
       id: 202,
@@ -41,7 +42,8 @@ const diplomadosData = {
         "Metodologías Ágiles (Scrum & Kanban)",
         "Liderazgo y Gestión de Interesados",
         "Software de Gestión: Microsoft Project"
-      ]
+      ],
+      action_href: '/#inscripcion'
     },
     {
       id: 203,
@@ -59,7 +61,8 @@ const diplomadosData = {
         "Farmacología en Emergencias",
         "Interpretación de Electrocardiografía",
         "Triage y Atención de Múltiples Víctimas"
-      ]
+      ],
+      action_href: '/#inscripcion'
     },
     {
       id: 204,
@@ -77,7 +80,8 @@ const diplomadosData = {
         "SEO: Posicionamiento Orgánico",
         "Analítica de Datos con GA4",
         "Estrategia de Content Marketing"
-      ]
+      ],
+      action_href: '/#inscripcion'
     },
     {
       id: 205,
@@ -95,7 +99,8 @@ const diplomadosData = {
         "Planes de Emergencia y Evacuación",
         "Auditoría Interna del Sistema",
         "Indicadores de Gestión de Salud"
-      ]
+      ],
+      action_href: '/#inscripcion'
     }
   ]
 };

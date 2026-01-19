@@ -14,16 +14,16 @@ const BachillerData = {
   actions: [
     { 
       label: "Iniciar Ahora", 
-      href: "/registro", 
+      href: "#inscripcion", 
       primary: true, 
       icon: <ArrowUpRight size={18} strokeWidth={3} /> 
     },
-    { 
-      label: "Cómo funciona", 
-      href: "/metodologia", 
-      primary: false, 
-      icon: <Play size={16} fill="currentColor" /> 
-    }
+    // { 
+    //   label: "Cómo funciona", 
+    //   href: "/metodologia", 
+    //   primary: false, 
+    //   icon: <Play size={16} fill="currentColor" /> 
+    // }
   ],
   stats: [
     { label: "Graduados", val: "5k+", color: "text-[#0993e2]" },
