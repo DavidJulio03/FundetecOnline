@@ -21,7 +21,7 @@ const WhatsAppFloat = () => (
 );
 
 // --- APP PRINCIPAL ---
-function App() {
+function Home() {
   return (
     <div className="font-sans antialiased text-gray-800 bg-white min-h-screen">
       <Header />
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

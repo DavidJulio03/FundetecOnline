@@ -1,50 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { ArrowRight, Clock, Star, GraduationCap, ChevronRight } from 'lucide-react';
+import ProgramsData from '../data/FeaturedProgramsData';
+
+
 
 const FeaturedPrograms = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
 
-  const programs = [
-    {
-      id: 1,
-      category: "Administración",
-      title: "Asistente Administrativo",
-      benefit: "Domina la gestión empresarial y procesos modernos.",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80",
-      duration: "3 Semestres",
-      rating: "4.9"
-    },
-    {
-      id: 2,
-      category: "Tecnología",
-      title: "Sistemas e Informática",
-      benefit: "Aprende soporte técnico, redes y bases de desarrollo.",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
-      duration: "3 Semestres",
-      rating: "5.0"
-    },
-    {
-      id: 3,
-      category: "Contabilidad",
-      title: "Auxiliar Contable",
-      benefit: "Gestiona finanzas y nómina con herramientas digitales.",
-      image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=80",
-      duration: "3 Semestres",
-      rating: "4.8"
-    },
-    {
-      id: 4,
-      category: "Educación",
-      title: "Atención a la Primera Infancia",
-      benefit: "Fórmate para cuidar y guiar el desarrollo infantil.",
-      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=600&q=80",
-      duration: "3 Semestres",
-      rating: "4.9"
-    }
-  ];
-
-  // Función para detectar el scroll y actualizar los puntos
   const handleScroll = () => {
     if (scrollRef.current) {
       const { scrollLeft, offsetWidth } = scrollRef.current;
@@ -53,7 +16,6 @@ const FeaturedPrograms = () => {
     }
   };
 
-  // Función para que los puntos sean clickeables
   const scrollToProgram = (index) => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.offsetWidth * index;
@@ -79,27 +41,34 @@ const FeaturedPrograms = () => {
           <div className="text-center md:text-left">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-8 h-[2px] bg-[#0993e2] rounded-full"></span>
-              <span className="text-[#0993e2] font-black text-[10px] md:text-xs uppercase tracking-[0.2em]">Oferta Académica</span>
+              <span className="text-[#0993e2] font-black text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                {ProgramsData.header.badge}
+              </span>
             </div>
             <h2 className="text-[28px] md:text-5xl font-[900] text-gray-900 leading-tight">
-              PROGRAMAS <br className="sm:hidden" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0993e2] to-[#4aa82c]">DESTACADOS</span>
+              {ProgramsData.header.title.main} <br className="sm:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0993e2] to-[#4aa82c]">
+                {ProgramsData.header.title.highlight}
+              </span>
             </h2>
           </div>
           
-          <a href="#" className="hidden md:flex items-center gap-3 text-gray-900 font-black text-sm uppercase tracking-widest group bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
-            Ver Catálogo
+          <a 
+            href={ProgramsData.header.catalogLink.href} 
+            className="hidden md:flex items-center gap-3 text-gray-900 font-black text-sm uppercase tracking-widest group bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all"
+          >
+            {ProgramsData.header.catalogLink.label}
             <ArrowRight size={18} className="text-[#4aa82c] group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 
-        {/* --- CONTENEDOR CON SCROLL SENSOR --- */}
+        {/* --- GRID / CAROUSEL --- */}
         <div 
           ref={scrollRef}
           onScroll={handleScroll}
           className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 overflow-x-auto pb-6 md:pb-0 snap-x snap-mandatory no-scrollbar -mx-5 px-5 md:mx-0 md:px-0"
         >
-          {programs.map((prog) => (
+          {ProgramsData.items.map((prog) => (
             <div 
               key={prog.id} 
               className="min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center group bg-white rounded-[28px] md:rounded-[32px] overflow-hidden shadow-sm md:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] border border-gray-100/50 flex flex-col transition-all duration-300"
@@ -129,36 +98,41 @@ const FeaturedPrograms = () => {
                   {prog.benefit}
                 </p>
                 
-                <button className="w-full py-4 rounded-xl md:rounded-2xl bg-gray-50 text-[#0993e2] md:text-gray-900 font-black text-[11px] uppercase tracking-widest transition-all md:hover:bg-[#0993e2] md:hover:text-white active:scale-95 flex items-center justify-center gap-2 border border-gray-100 md:border-none">
+                <a 
+                  href={prog.href}
+                  className="w-full py-4 rounded-xl md:rounded-2xl bg-gray-50 text-[#0993e2] md:text-gray-900 font-black text-[11px] uppercase tracking-widest transition-all md:hover:bg-[#0993e2] md:hover:text-white active:scale-95 flex items-center justify-center gap-2 border border-gray-100 md:border-none"
+                >
                   Explorar Programa
                   <ChevronRight size={16} className="md:hidden" />
                   <GraduationCap size={18} className="hidden md:block" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
         </div>
 
-        {/* --- BARRA DE PUNTOS FUNCIONAL (Solo móvil) --- */}
+        {/* --- DOTS INDICATOR --- */}
         <div className="flex justify-center items-center gap-3 mt-4 md:hidden">
-          {programs.map((_, i) => (
+          {ProgramsData.items.map((_, i) => (
             <button 
               key={i} 
               onClick={() => scrollToProgram(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
                 activeIndex === i ? 'w-10 bg-[#0993e2]' : 'w-2 bg-gray-300'
               }`}
-              aria-label={`Ir al programa ${i + 1}`}
             />
           ))}
         </div>
 
-        {/* --- BOTÓN FINAL MÓVIL --- */}
+        {/* --- FOOTER BUTTON MOBILE --- */}
         <div className="mt-8 flex justify-center md:hidden">
-          <button className="w-full flex items-center justify-center gap-3 text-gray-900 font-black text-[11px] uppercase tracking-widest bg-white py-5 rounded-2xl shadow-lg border border-gray-100 active:bg-gray-50">
-            Ver Todos los Programas
+          <a 
+            href={ProgramsData.header.catalogLink.href}
+            className="w-full flex items-center justify-center gap-3 text-gray-900 font-black text-[11px] uppercase tracking-widest bg-white py-5 rounded-2xl shadow-lg border border-gray-100 active:bg-gray-50"
+          >
+            {ProgramsData.header.catalogLink.label}
             <ArrowRight size={18} className="text-[#4aa82c]" />
-          </button>
+          </a>
         </div>
       </div>
     </section>
