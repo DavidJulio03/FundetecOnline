@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, CheckCircle, Clock, Award, Laptop, Users, Star, ArrowRight, MessageCircle } from 'lucide-react';
-import Header from './layout/Header';
+import Header from '../../shared/layout/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import FeaturedPrograms from './components/FeaturedPrograms';
@@ -8,7 +8,7 @@ import BachilleratoBanner from './components/Bachiller';
 import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
 import Enrollment from './components/Enrollment';
-import Footer from './layout/Footer';
+import Footer from '../../shared/layout/Footer';
 
 
 

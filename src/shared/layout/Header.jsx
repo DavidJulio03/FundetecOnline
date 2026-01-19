@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HeaderData from '../data/HeaderData';
+import HeaderData from '../../pages/Home/data/HeaderData';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,8 +17,19 @@ const Header = () => {
 
   return (
     <>
-      <div className={`fixed top-0 w-full z-[100] px-4 py-4 lg:px-8 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-6'}`}>
-        <header className={`max-w-7xl mx-auto h-20 bg-white/90 backdrop-blur-md border border-white/40 rounded-[28px] flex items-center justify-between px-6 lg:px-10 transition-all duration-300 ${isScrolled ? 'shadow-2xl shadow-blue-900/10' : 'shadow-xl shadow-gray-200/50'}`}>
+      {/* CONTENEDOR FIJO: 
+          Agregamos backdrop-blur aquí para que afecte a todo el área del header 
+      */}
+      <div className={`fixed top-0 w-full z-[100] px-4 transition-all duration-500 
+        ${isScrolled 
+          ? 'py-3 bg-white/40 backdrop-blur-md border-b border-white/20' 
+          : 'py-6 bg-transparent'}`}
+      >
+        <header className={`max-w-7xl mx-auto h-20 flex items-center justify-between px-6 lg:px-10 transition-all duration-300 rounded-[28px]
+          ${isScrolled 
+            ? 'bg-white/90 backdrop-blur-md shadow-2xl shadow-blue-900/10 border-white/50' 
+            : 'bg-white shadow-xl shadow-gray-200/50 border-white/10'}`}
+        >
           
           {/* --- LOGO SECTION --- */}
           <a href="/" className="flex items-center gap-3 group cursor-pointer">
@@ -63,7 +74,6 @@ const Header = () => {
               </div>
             )}
 
-            {/* BOTÓN DE ACCIÓN COMO LINK */}
             <a 
               href={HeaderData.actionButton.href}
               className="hidden sm:block px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-lg hover:brightness-110 active:scale-95 transition-all text-center"
@@ -89,55 +99,26 @@ const Header = () => {
         </header>
       </div>
 
-      {/* --- MOBILE FULLSCREEN MENU --- */}
+      {/* --- MOBILE FULLSCREEN MENU (Mantiene su propio blur) --- */}
       <div className={`fixed inset-0 z-[150] transition-all duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}>
-        <div className="absolute inset-0 bg-gray-950/40 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)}></div>
+        <div className="absolute inset-0 bg-gray-950/40 backdrop-blur-md" onClick={() => setIsMenuOpen(false)}></div>
         
         <div className="absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl flex flex-col">
+          {/* ... resto del menú móvil igual ... */}
           <div className="p-8 flex justify-between items-center border-b border-gray-50">
             <span className="font-black text-xl text-[#4aa82c]">{HeaderData.brand.name}</span>
-            <button 
-              onClick={() => setIsMenuOpen(false)}
-              className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-gray-800 text-xl font-light hover:bg-gray-200 transition-colors"
-            >
-              ✕
-            </button>
+            <button onClick={() => setIsMenuOpen(false)} className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-gray-800 text-xl font-light">✕</button>
           </div>
-
           <nav className="flex-1 px-8 pt-12 flex flex-col gap-10">
             {HeaderData.navLinks.map((item, idx) => (
-              <a 
-                key={item.name} 
-                href={item.href}
-                className="group flex flex-col"
-                onClick={() => setIsMenuOpen(false)}
-              >
+              <a key={item.name} href={item.href} className="group flex flex-col" onClick={() => setIsMenuOpen(false)}>
                 <div className="flex items-center gap-4">
                   <span className="text-[#0993e2] font-mono text-sm">0{idx + 1}</span>
-                  <span className="text-3xl font-black text-gray-900 group-hover:text-[#4aa82c] transition-colors uppercase tracking-tighter">
-                    {item.name}
-                  </span>
+                  <span className="text-3xl font-black text-gray-900 group-hover:text-[#4aa82c] transition-colors uppercase tracking-tighter">{item.name}</span>
                 </div>
-                <span className="text-gray-400 text-sm mt-1 ml-9 font-medium">{item.desc}</span>
               </a>
             ))}
           </nav>
-
-          <div className="p-8 bg-gray-50 mt-auto">
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Atención al estudiante</p>
-            <div className="flex flex-col gap-4">
-              <a href={HeaderData.contact.phoneLink} className="text-xl font-black text-gray-800 hover:text-[#0993e2] transition-colors tracking-tight">
-                {HeaderData.contact.phone}
-              </a>
-              <a 
-                href={HeaderData.actionButton.href}
-                className="w-full py-5 rounded-2xl text-white font-black text-sm uppercase tracking-[0.15em] shadow-xl shadow-[#4aa82c]/20 transition-transform active:scale-95 text-center"
-                style={{ backgroundColor: HeaderData.actionButton.color }}
-              >
-                {HeaderData.actionButton.label} Ahora
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </>

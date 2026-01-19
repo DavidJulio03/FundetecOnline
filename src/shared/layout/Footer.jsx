@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight, Award } from 'lucide-react';
-import FooterData from '../data/FooterData';
+import FooterData from '../../pages/Home/data/FooterData';
 
 
 
