@@ -1,36 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-// 1. Objeto de configuración centralizado
-const headerConfig = {
-  brand: {
-    name: "FUNDETEC",
-    subtitle: "Educación Técnica",
-    logoUrl: null,
-    colors: {
-      primary: '#4aa82c',
-      secondary: '#0993e2'
-    }
-  },
-  navLinks: [
-    { name: "Programas", href: "./programas", desc: "Termina tus estudios rápido" },
-    { name: "Nosotros", href: "./nosotros", desc: "Especializaciones cortas" },
-    { name: "Preguntas Frecuentes", href: "./preguntas", desc: "Resolvemos tus dudas" },
-    { name: "Blog", href: "./blog", desc: "Noticias y actualidad" },
-  ],
-  actionButton: {
-    label: "Inscribirse",
-    href: "./matriculas",
-    color: '#4aa82c'
-  },
-  statusBadge: {
-    text: "Matrículas Abiertas",
-    active: true
-  },
-  contact: {
-    phone: "+57 300 123 4567",
-    phoneLink: "tel:3001234567"
-  }
-};
+import HeaderData from '../data/HeaderData';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,17 +22,17 @@ const Header = () => {
           
           {/* --- LOGO SECTION --- */}
           <a href="/" className="flex items-center gap-3 group cursor-pointer">
-            {headerConfig.brand.logoUrl ? (
-              <img src={headerConfig.brand.logoUrl} alt={headerConfig.brand.name} className="h-10 w-auto" />
+            {HeaderData.brand.logoUrl ? (
+              <img src={HeaderData.brand.logoUrl} alt={HeaderData.brand.name} className="h-10 w-auto" />
             ) : (
               <div className="flex items-center">
                 <div className="w-11 h-11 rounded-2xl flex items-center justify-center font-black text-white shadow-lg transition-transform group-hover:rotate-12" 
-                     style={{ backgroundColor: headerConfig.brand.colors.primary }}>
-                  {headerConfig.brand.name.charAt(0)}
+                     style={{ backgroundColor: HeaderData.brand.colors.primary }}>
+                  {HeaderData.brand.name.charAt(0)}
                 </div>
                 <div className="ml-3 flex flex-col">
-                  <span className="text-xl font-black tracking-tighter text-gray-800 leading-none">{headerConfig.brand.name}</span>
-                  <span className="text-[10px] font-bold text-[#0993e2] uppercase tracking-widest mt-1">{headerConfig.brand.subtitle}</span>
+                  <span className="text-xl font-black tracking-tighter text-gray-800 leading-none">{HeaderData.brand.name}</span>
+                  <span className="text-[10px] font-bold text-[#0993e2] uppercase tracking-widest mt-1">{HeaderData.brand.subtitle}</span>
                 </div>
               </div>
             )}
@@ -71,7 +40,7 @@ const Header = () => {
 
           {/* --- DESKTOP NAVIGATION --- */}
           <nav className="hidden lg:flex items-center bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100">
-            {headerConfig.navLinks.map((item) => (
+            {HeaderData.navLinks.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -84,23 +53,23 @@ const Header = () => {
 
           {/* --- ACTIONS & MOBILE TOGGLE --- */}
           <div className="flex items-center gap-4">
-            {headerConfig.statusBadge.active && (
+            {HeaderData.statusBadge.active && (
               <div className="hidden xl:flex items-center gap-2 px-4 py-2 bg-[#4aa82c]/10 rounded-full border border-[#4aa82c]/20">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4aa82c] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4aa82c]"></span>
                 </span>
-                <span className="text-[10px] font-black text-[#4aa82c] tracking-wider uppercase">{headerConfig.statusBadge.text}</span>
+                <span className="text-[10px] font-black text-[#4aa82c] tracking-wider uppercase">{HeaderData.statusBadge.text}</span>
               </div>
             )}
 
             {/* BOTÓN DE ACCIÓN COMO LINK */}
             <a 
-              href={headerConfig.actionButton.href}
+              href={HeaderData.actionButton.href}
               className="hidden sm:block px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-lg hover:brightness-110 active:scale-95 transition-all text-center"
-              style={{ backgroundColor: headerConfig.actionButton.color }}
+              style={{ backgroundColor: HeaderData.actionButton.color }}
             >
-              {headerConfig.actionButton.label}
+              {HeaderData.actionButton.label}
             </a>
 
             <button 
@@ -126,7 +95,7 @@ const Header = () => {
         
         <div className="absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl flex flex-col">
           <div className="p-8 flex justify-between items-center border-b border-gray-50">
-            <span className="font-black text-xl text-[#4aa82c]">{headerConfig.brand.name}</span>
+            <span className="font-black text-xl text-[#4aa82c]">{HeaderData.brand.name}</span>
             <button 
               onClick={() => setIsMenuOpen(false)}
               className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-gray-800 text-xl font-light hover:bg-gray-200 transition-colors"
@@ -136,7 +105,7 @@ const Header = () => {
           </div>
 
           <nav className="flex-1 px-8 pt-12 flex flex-col gap-10">
-            {headerConfig.navLinks.map((item, idx) => (
+            {HeaderData.navLinks.map((item, idx) => (
               <a 
                 key={item.name} 
                 href={item.href}
@@ -157,15 +126,15 @@ const Header = () => {
           <div className="p-8 bg-gray-50 mt-auto">
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Atención al estudiante</p>
             <div className="flex flex-col gap-4">
-              <a href={headerConfig.contact.phoneLink} className="text-xl font-black text-gray-800 hover:text-[#0993e2] transition-colors tracking-tight">
-                {headerConfig.contact.phone}
+              <a href={HeaderData.contact.phoneLink} className="text-xl font-black text-gray-800 hover:text-[#0993e2] transition-colors tracking-tight">
+                {HeaderData.contact.phone}
               </a>
               <a 
-                href={headerConfig.actionButton.href}
+                href={HeaderData.actionButton.href}
                 className="w-full py-5 rounded-2xl text-white font-black text-sm uppercase tracking-[0.15em] shadow-xl shadow-[#4aa82c]/20 transition-transform active:scale-95 text-center"
-                style={{ backgroundColor: headerConfig.actionButton.color }}
+                style={{ backgroundColor: HeaderData.actionButton.color }}
               >
-                {headerConfig.actionButton.label} Ahora
+                {HeaderData.actionButton.label} Ahora
               </a>
             </div>
           </div>
