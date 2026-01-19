@@ -5,6 +5,7 @@ const FooterData = {
     name: "FUNDETEC",
     letter: "F",
     tagline: "Institución de Educación Superior",
+    logoUrl: "https://lirp.cdn-website.com/d3af38d7/dms3rep/multi/opt/logo-640w.png",
     mission: "Comprometidos con la formación integral y el desarrollo humano. Más de dos décadas liderando procesos educativos de calidad en todo el territorio nacional."
   },
   contact: [
@@ -31,20 +32,18 @@ const FooterData = {
       title: "Programas",
       accent: "border-[#0993e2]",
       items: [
-        { label: "Validación de Bachillerato", href: "#" },
-        { label: "Técnicos Laborales", href: "#" },
-        { label: "Diplomados de Alta Gerencia", href: "#" },
-        { label: "Cursos de Especialización", href: "#" }
+        { label: "Validación de Bachillerato", href: "/programas" },
+        { label: "Técnicos Laborales", href: "/programas" },
+        { label: "Cursos de Especialización", href: "/programas" },
+        { label: "Blog", href: "/blog" }
       ]
     },
     {
       title: "Institucional",
       accent: "border-[#4aa82c]",
       items: [
-        { label: "Preguntas Frecuentes", href: "#" },
+        { label: "Preguntas Frecuentes", href: "/preguntas" },
         { label: "Portal del Estudiante", href: "#" },
-        { label: "Sedes y Horarios", href: "#" },
-        { label: "Trabaja con Nosotros", href: "#" }
       ]
     }
   ],

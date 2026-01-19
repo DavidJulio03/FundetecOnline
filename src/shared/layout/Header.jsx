@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HeaderData from '../../pages/Home/data/HeaderData';
+import HeaderData from '../data/HeaderData';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,20 +33,33 @@ const Header = () => {
           
           {/* --- LOGO SECTION --- */}
           <a href="/" className="flex items-center gap-3 group cursor-pointer">
-            {HeaderData.brand.logoUrl ? (
-              <img src={HeaderData.brand.logoUrl} alt={HeaderData.brand.name} className="h-10 w-auto" />
-            ) : (
-              <div className="flex items-center">
-                <div className="w-11 h-11 rounded-2xl flex items-center justify-center font-black text-white shadow-lg transition-transform group-hover:rotate-12" 
-                     style={{ backgroundColor: HeaderData.brand.colors.primary }}>
+            {/* Logo o fallback */}
+            <div className="relative flex items-center justify-center">
+              {HeaderData.brand.logoUrl ? (
+                <img
+                  src={HeaderData.brand.logoUrl}
+                  alt={HeaderData.brand.name}
+                  className="h-11 w-11 object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : (
+                <div
+                  className="w-11 h-11 rounded-2xl flex items-center justify-center font-black text-white shadow-lg transition-transform duration-300 group-hover:rotate-12"
+                  style={{ backgroundColor: HeaderData.brand.colors.primary }}
+                >
                   {HeaderData.brand.name.charAt(0)}
                 </div>
-                <div className="ml-3 flex flex-col">
-                  <span className="text-xl font-black tracking-tighter text-gray-800 leading-none">{HeaderData.brand.name}</span>
-                  <span className="text-[10px] font-bold text-[#0993e2] uppercase tracking-widest mt-1">{HeaderData.brand.subtitle}</span>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
+
+            {/* Texto SIEMPRE visible */}
+            <div className="flex flex-col leading-none">
+              <span className="text-xl font-black tracking-tighter text-gray-800">
+                {HeaderData.brand.name}
+              </span>
+              <span className="text-[10px] font-bold text-[#0993e2] uppercase tracking-widest mt-1">
+                {HeaderData.brand.subtitle}
+              </span>
+            </div>
           </a>
 
           {/* --- DESKTOP NAVIGATION --- */}
