@@ -9,7 +9,7 @@ import Blog from '../pages/Blog/Blog';
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename='/FundetecOnline'>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/programas" element={<Programas />} />
