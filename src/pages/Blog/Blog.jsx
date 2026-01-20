@@ -14,7 +14,7 @@ const BlogPost = ({ post, onBack }) => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Barra de navegación del artículo */}
-      <div className="mb-8">
+      <div className="mb-8 py-4">
         <button 
           onClick={onBack}
           className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-[#0993e2] transition-colors"
