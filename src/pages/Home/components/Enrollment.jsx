@@ -1,7 +1,7 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { Send, ChevronRight } from 'lucide-react';
 import EnrollmentData from '../data/EnrollmentData';
-
 
 const Enrollment = () => {
   return (
@@ -90,7 +90,6 @@ const Enrollment = () => {
                   </div>
                 </div>
 
-                {/* Botón de envío (Sigue siendo Button porque dispara un Form) */}
                 <button 
                   type="submit" 
                   className="w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-white font-black text-[13px] md:text-sm uppercase tracking-[0.15em] shadow-lg shadow-[#4aa82c]/20 hover:shadow-[#4aa82c]/30 hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-3 mt-4"
@@ -101,12 +100,13 @@ const Enrollment = () => {
                 </button>
 
                 <div className="pt-4 border-t border-gray-50">
-                  <a 
-                    href={EnrollmentData.termsLink} 
+                  {/* Cambiado de <a> a <Link> para términos y privacidad */}
+                  <Link 
+                    to={EnrollmentData.termsLink} 
                     className="block text-[10px] text-center text-gray-400 font-bold leading-tight uppercase tracking-tight hover:text-[#0993e2] transition-colors"
                   >
                     {EnrollmentData.form.privacyText}
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import FeaturesData from '../data/FeaturesData';
 
 const Features = () => {
@@ -30,9 +31,9 @@ const Features = () => {
         {/* --- GRID DE CARDS --- */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
           {FeaturesData.items.map((feature, idx) => (
-            <a 
+            <Link 
               key={idx} 
-              href={feature.href}
+              to={feature.href}
               className="group relative p-5 md:p-8 rounded-[24px] md:rounded-[32px] bg-white border border-gray-100 transition-all duration-300 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] flex flex-col items-center lg:items-start text-center lg:text-left overflow-hidden"
             >
               {/* Icono adaptable */}
@@ -62,7 +63,7 @@ const Features = () => {
                 className="absolute bottom-0 left-0 right-0 h-1.5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 style={{ backgroundColor: feature.color }}
               ></div>
-            </a>
+            </Link>
           ))}
         </div>
 

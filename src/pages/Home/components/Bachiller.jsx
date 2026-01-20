@@ -1,7 +1,7 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { Sparkles, GraduationCap, Check } from 'lucide-react';
 import BachillerData from '../data/BachillerData';
-
 
 const BachilleratoHero = () => {
   return (
@@ -10,7 +10,7 @@ const BachilleratoHero = () => {
       {/* FONDO GEOMÉTRICO */}
       <div className="absolute inset-0 z-0">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className={`absolute top-0 w-[1px] h-full bg-gray-100/50`} style={{ left: `${(i + 1) * 25}%` }}></div>
+          <div key={i} className="absolute top-0 w-[1px] h-full bg-gray-100/50" style={{ left: `${(i + 1) * 25}%` }}></div>
         ))}
       </div>
 
@@ -38,20 +38,26 @@ const BachilleratoHero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center">
-              {BachillerData.actions.map((action, idx) => (
-                <a
-                  key={idx}
-                  href={action.href}
-                  className={`w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-3 ${
-                    action.primary 
-                    ? "bg-[#4aa82c] hover:bg-gray-900 text-white shadow-xl shadow-[#4aa82c]/20 hover:-translate-y-1"
-                    : "text-gray-700 bg-gray-50 border border-transparent hover:border-[#0993e2]/20 hover:text-[#0993e2]"
-                  }`}
-                >
-                  {action.icon && action.icon}
-                  {action.label}
-                </a>
-              ))}
+              {BachillerData.actions.map((action, idx) => {
+                const isExternal = action.href.startsWith('http') || action.href.startsWith('wa.me');
+                const styles = `w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-3 ${
+                  action.primary 
+                  ? "bg-[#4aa82c] hover:bg-gray-900 text-white shadow-xl shadow-[#4aa82c]/20 hover:-translate-y-1"
+                  : "text-gray-700 bg-gray-50 border border-transparent hover:border-[#0993e2]/20 hover:text-[#0993e2]"
+                }`;
+
+                return isExternal ? (
+                  <a key={idx} href={action.href} target="_blank" rel="noopener noreferrer" className={styles}>
+                    {action.icon && action.icon}
+                    {action.label}
+                  </a>
+                ) : (
+                  <Link key={idx} to={action.href} className={styles}>
+                    {action.icon && action.icon}
+                    {action.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -74,7 +80,7 @@ const BachilleratoHero = () => {
             </div>
           </div>
 
-          {/* UI DE PROGRESO - CORREGIDO: Oculto en Tablets (md), visible solo en PC (xl) */}
+          {/* UI DE PROGRESO */}
           <div className="absolute -bottom-10 right-0 md:right-24 z-40 hidden xl:block animate-float-slow transform scale-75 md:scale-100">
             <div className="bg-gray-900/95 backdrop-blur-md text-white p-6 md:p-8 rounded-[30px] md:rounded-[40px] shadow-2xl w-64 md:w-80 border border-white/10">
               <div className="flex justify-between items-start mb-4 md:mb-6">

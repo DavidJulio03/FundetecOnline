@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; // Importamos Link por si necesitas navegación interna
 import { X, CheckCircle2, Clock, Award, BookOpen, ArrowRight } from 'lucide-react';
 
 const TecnicoModal = ({ program, onClose }) => {
-    console.log(program)
   if (!program) return null;
 
   useEffect(() => {
@@ -79,13 +79,16 @@ const TecnicoModal = ({ program, onClose }) => {
             </div>
           </div>
 
-          {/* CTA SECCIÓN MEJORADA */}
+          {/* CTA SECCIÓN */}
           <div className="bg-[#081b29] rounded-[32px] p-8 text-white relative overflow-hidden">
             <div className="relative z-10 text-center sm:text-left">
               <h4 className="text-xl font-black mb-2">Inicia tu inscripción</h4>
               <p className="text-gray-400 text-sm mb-6">Pregunta por nuestras opciones de financiación y becas disponibles para <strong>{program.title}</strong>.</p>
               
-              {/* Botón convertido a Enlace Funcional */}
+              {/* IMPORTANTE: 
+                  Si 'action_href' es un link externo (WhatsApp), usa <a>.
+                  Si es una página de tu propia web, usa <Link to={program.action_href}>.
+              */}
               <a 
                 href={program.action_href}
                 target="_blank"
@@ -97,7 +100,6 @@ const TecnicoModal = ({ program, onClose }) => {
               </a>
             </div>
             
-            {/* Efecto decorativo de fondo */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#4aa82c]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
           </div>
         </div>

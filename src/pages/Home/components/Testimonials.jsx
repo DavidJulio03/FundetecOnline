@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import TestimonialCard from './TestimonialCard';
 import TestimonialsData from '../data/TestimonialsData';
@@ -74,7 +75,7 @@ const Testimonials = () => {
             />
           ))}
           
-          {/* Card CTA Final con etiqueta <a> */}
+          {/* Card CTA Final actualizada a Link */}
           <div className="flex-shrink-0 w-[85vw] sm:w-[300px] h-[550px] rounded-[40px] border-2 border-dashed border-gray-300 flex items-center justify-center p-8 text-center flex-col group hover:border-[#4aa82c] hover:bg-white transition-all snap-center">
              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-green-50 transition-colors">
                 <Heart className="text-gray-400 group-hover:text-[#4aa82c] transition-colors" size={32} />
@@ -85,12 +86,12 @@ const Testimonials = () => {
              <p className="text-gray-500 text-sm mb-8 font-medium leading-relaxed">
                {TestimonialsData.ctaCard.description}
              </p>
-             <a 
-               href={TestimonialsData.ctaCard.href}
+             <Link 
+               to={TestimonialsData.ctaCard.href}
                className="text-[10px] font-black uppercase tracking-[0.2em] py-4 px-8 bg-gray-900 text-white rounded-2xl hover:bg-[#4aa82c] hover:-translate-y-1 transition-all shadow-xl"
              >
                {TestimonialsData.ctaCard.buttonLabel}
-             </a>
+             </Link>
           </div>
         </div>
 

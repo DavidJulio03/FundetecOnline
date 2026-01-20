@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; // Importación vital
 import { Home, ArrowLeft, Search, GraduationCap, Sparkles } from 'lucide-react';
 
 // 1. Configuración de contenido
@@ -11,7 +12,7 @@ const notFoundData = {
   description: "Parece que el camino que buscabas ha cambiado de rumbo. No te preocupes, tu formación sigue adelante.",
   actions: [
     { label: "Volver al Inicio", href: "/", primary: true, icon: <Home size={18} /> },
-    { label: "Ir atrás", href: "#", onClick: () => window.history.back(), primary: false, icon: <ArrowLeft size={18} /> }
+    { label: "Ir atrás", href: "#", onClick: (e) => { e.preventDefault(); window.history.back(); }, primary: false, icon: <ArrowLeft size={18} /> }
   ],
   suggestions: [
     { label: "Bachillerato", href: "/bachillerato" },
@@ -24,11 +25,10 @@ const NotFound = () => {
   return (
     <main className="relative min-h-screen bg-white flex items-center justify-center overflow-hidden py-20 px-6">
       
-      {/* --- DECORACIONES DE FONDO (Estética Fundetec) --- */}
+      {/* --- DECORACIONES DE FONDO --- */}
       <div className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute -bottom-[10%] -left-[10%] w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] opacity-60"></div>
-        {/* Líneas de cuadrícula sutiles */}
         {[...Array(4)].map((_, i) => (
           <div key={i} className="absolute top-0 w-[1px] h-full bg-gray-50" style={{ left: `${(i + 1) * 20}%` }}></div>
         ))}
@@ -50,7 +50,6 @@ const NotFound = () => {
               </span>
             </div>
             
-            {/* Badge Flotante */}
             <div className="absolute -top-4 -right-4 bg-[#4aa82c] text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-bounce-subtle">
               <Sparkles size={14} />
               <span className="text-[10px] font-bold uppercase tracking-widest">{notFoundData.badge}</span>
@@ -73,34 +72,43 @@ const NotFound = () => {
           {/* --- ACCIONES --- */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16">
             {notFoundData.actions.map((action, idx) => (
-              <a
-                key={idx}
-                href={action.href}
-                onClick={action.onClick}
-                className={`flex items-center justify-center gap-3 px-10 py-5 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 ${
-                  action.primary
-                    ? "bg-gray-900 text-white shadow-2xl shadow-gray-200 hover:bg-[#4aa82c] hover:-translate-y-1"
-                    : "bg-white text-gray-600 border border-gray-100 hover:border-[#0993e2] hover:text-[#0993e2]"
-                }`}
-              >
-                {action.icon}
-                {action.label}
-              </a>
+              action.primary ? (
+                /* Botón Principal con Link */
+                <Link
+                  key={idx}
+                  to={action.href}
+                  className="flex items-center justify-center gap-3 px-10 py-5 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 bg-gray-900 text-white shadow-2xl shadow-gray-200 hover:bg-[#4aa82c] hover:-translate-y-1"
+                >
+                  {action.icon}
+                  {action.label}
+                </Link>
+              ) : (
+                /* Botón Secundario (Ir atrás) con onClick */
+                <a
+                  key={idx}
+                  href={action.href}
+                  onClick={action.onClick}
+                  className="flex items-center justify-center gap-3 px-10 py-5 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 bg-white text-gray-600 border border-gray-100 hover:border-[#0993e2] hover:text-[#0993e2]"
+                >
+                  {action.icon}
+                  {action.label}
+                </a>
+              )
             ))}
           </div>
 
-          {/* --- SUGERENCIAS RÁPIDAS --- */}
+          {/* --- SUGERENCIAS RÁPIDAS (Cambiadas a Link) --- */}
           <div className="pt-10 border-t border-gray-100 w-full max-w-md">
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6">¿Buscabas alguno de estos?</p>
             <div className="flex flex-wrap justify-center gap-3">
               {notFoundData.suggestions.map((sug, i) => (
-                <a 
+                <Link 
                   key={i} 
-                  href={sug.href}
+                  to={sug.href}
                   className="px-5 py-2.5 bg-gray-50 rounded-xl text-[11px] font-bold text-gray-500 hover:bg-[#0993e2]/5 hover:text-[#0993e2] transition-colors border border-transparent hover:border-[#0993e2]/20"
                 >
                   {sug.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; // Importamos Link
 import { ChevronRight, Award } from 'lucide-react';
 import FooterData from '../data/FooterData';
 
@@ -12,8 +13,8 @@ const Footer = () => {
         {/* --- SECCIÓN SUPERIOR: BRANDING & CONTACTO --- */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 border-b border-white/5 pb-12">
           
-          {/* BLOQUE IZQUIERDO: LOGO + TEXTO */}
-          <div className="flex items-center gap-5">
+          {/* BLOQUE IZQUIERDO: LOGO (Cambiado a Link) */}
+          <Link to="/" className="flex items-center gap-5">
             <div className="shrink-0">
               {FooterData.brand.logoUrl ? (
                 <img
@@ -36,14 +37,13 @@ const Footer = () => {
                 {FooterData.brand.tagline}
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* BLOQUE DERECHO: CONTACTO RÁPIDO */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 w-full lg:w-auto">
             {FooterData.contact.map((item, idx) => (
               <div key={idx} className="flex items-center gap-4 group">
                 <div className={`w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center transition-colors group-hover:bg-white/10 ${item.color}`}>
-                  {/* Clonamos el icono para asegurar que tenga el tamaño correcto si viene de Lucide */}
                   {React.cloneElement(item.icon, { size: 20 })}
                 </div>
                 <div className="flex flex-col">
@@ -58,22 +58,22 @@ const Footer = () => {
         {/* --- GRID PRINCIPAL --- */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 py-16">
           
-          {/* Columna 1: Nosotros & Socials */}
           <div className="space-y-6">
             <h4 className="text-xs font-black uppercase tracking-widest text-white border-l-4 border-[#4aa82c] pl-4">Nuestra Misión</h4>
             <p className="text-gray-400 text-sm leading-relaxed font-medium">
               {FooterData.brand.mission}
             </p>
+            {/* Redes Sociales: Se mantienen como <a> porque son enlaces externos */}
             <div className="flex gap-3 pt-2">
               {FooterData.socials.map(({ Icon, href }, i) => (
-                <a key={i} href={href} className="text-gray-400 hover:text-white transition-all border border-white/10 p-2.5 rounded-xl hover:bg-[#4aa82c] hover:border-[#4aa82c]">
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-all border border-white/10 p-2.5 rounded-xl hover:bg-[#4aa82c] hover:border-[#4aa82c]">
                   <Icon size={18} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Columnas 2 y 3: Menús Dinámicos */}
+          {/* Menús Dinámicos (Cambiados a Link) */}
           {FooterData.menus.map((menu, idx) => (
             <div key={idx} className="space-y-6">
               <h4 className={`text-xs font-black uppercase tracking-widest text-white border-l-4 ${menu.accent} pl-4`}>
@@ -82,17 +82,16 @@ const Footer = () => {
               <ul className="space-y-3">
                 {menu.items.map((link, linkIdx) => (
                   <li key={linkIdx}>
-                    <a href={link.href} className="text-gray-400 hover:text-white text-sm font-bold flex items-center gap-2 transition-all hover:translate-x-2 group">
+                    <Link to={link.href} className="text-gray-400 hover:text-white text-sm font-bold flex items-center gap-2 transition-all hover:translate-x-2 group">
                       <ChevronRight size={14} className="text-[#4aa82c] opacity-0 group-hover:opacity-100 transition-all" />
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
 
-          {/* Columna 4: Certificaciones y Legal */}
           <div className="space-y-6">
             <h4 className={`text-xs font-black uppercase tracking-widest text-white border-l-4 ${FooterData.legalInfo.accent} pl-4`}>
               {FooterData.legalInfo.title}
@@ -118,9 +117,9 @@ const Footer = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-[10px] font-black text-gray-500 uppercase tracking-widest">
             {FooterData.bottomLinks.map((link, idx) => (
-              <a key={idx} href={link.href} className="hover:text-[#4aa82c] transition-colors">
+              <Link key={idx} to={link.href} className="hover:text-[#4aa82c] transition-colors">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

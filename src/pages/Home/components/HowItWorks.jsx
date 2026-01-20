@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { ChevronRight } from 'lucide-react';
 import HowItWorksData from '../data/HowItWorksData';
 
@@ -73,15 +74,15 @@ const HowItWorks = () => {
           </div>
         </div>
 
-        {/* --- BOTÓN DE CIERRE (Corregido para no ocupar todo el ancho) --- */}
+        {/* --- BOTÓN DE CIERRE --- */}
         <div className="mt-20 md:mt-28 text-center px-4 flex flex-col items-center">
-          <a 
-            href={HowItWorksData.footer.buttonHref}
+          <Link 
+            to={HowItWorksData.footer.buttonHref}
             className="w-fit bg-gray-900 text-white px-10 py-5 rounded-[20px] font-black text-xs uppercase tracking-[0.2em] hover:bg-[#4aa82c] transition-all duration-300 shadow-2xl shadow-gray-200 flex items-center justify-center gap-3 mx-auto group"
           >
             {HowItWorksData.footer.buttonLabel}
             <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-6">
             {HowItWorksData.footer.subtext}
           </p>

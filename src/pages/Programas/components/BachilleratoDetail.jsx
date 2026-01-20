@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; // Importamos Link
 import { 
   CheckCircle2, 
   FileText, 
@@ -78,30 +79,29 @@ const BachilleratoDetail = () => {
 
        {/* --- CTA FINAL --- */}
         <div className="mt-24 p-8 md:p-16 rounded-[48px] bg-gradient-to-r from-[#0993e2] to-[#4aa82c] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10">
-        <div className="relative z-10 text-white max-w-xl text-center md:text-left">
-            <h3 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
-            ¿Listo para obtener tu título?
-            </h3>
-            <p className="text-white/80 font-medium text-lg">
-            Inicia tu proceso hoy mismo y gradúate en tiempo récord con validez nacional.
-            </p>
-        </div>
-        
-        <div className="relative z-10">
-            {/* Cambiado de <button> a <a> para funcionalidad de enlace */}
-            <a 
-            href={bachiInfo.cta?.href} 
-            rel="noopener noreferrer"
-            className="inline-flex px-10 py-5 bg-white text-gray-900 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all items-center gap-3 group whitespace-nowrap"
-            >
-            {bachiInfo.cta?.label || "Empezar Matrícula"}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-        </div>
+          <div className="relative z-10 text-white max-w-xl text-center md:text-left">
+              <h3 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
+              ¿Listo para obtener tu título?
+              </h3>
+              <p className="text-white/80 font-medium text-lg">
+              Inicia tu proceso hoy mismo y gradúate en tiempo récord con validez nacional.
+              </p>
+          </div>
+          
+          <div className="relative z-10">
+              {/* Cambiado de <a> a <Link> para navegación fluida en SPA */}
+              <Link 
+                to={bachiInfo.cta?.href || "/"} 
+                className="inline-flex px-10 py-5 bg-white text-gray-900 rounded-[22px] font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all items-center gap-3 group whitespace-nowrap"
+              >
+                {bachiInfo.cta?.label || "Empezar Matrícula"}
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+          </div>
 
-        {/* Círculos decorativos de fondo */}
-        <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute -left-20 -top-20 w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
+          {/* Círculos decorativos de fondo */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute -left-20 -top-20 w-80 h-80 bg-black/10 rounded-full blur-3xl"></div>
         </div>
 
       </div>

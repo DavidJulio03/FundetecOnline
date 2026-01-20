@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link'; // Importación de Link
 import { X, Target, Zap, BarChart3, ShieldCheck, Calendar, ArrowRight } from 'lucide-react';
 
 const DiplomadoDrawer = ({ program, onClose }) => {
@@ -95,10 +96,12 @@ const DiplomadoDrawer = ({ program, onClose }) => {
             </div>
           </div>
 
-          {/* CTA Persuasivo - AHORA FUNCIONAL */}
+          {/* CTA Persuasivo */}
+          {/* Se mantiene <a> si el link es externo (WhatsApp/Portal Externo) */}
           <a 
             href={program.action_href}
             rel="noopener noreferrer"
+            target="_blank"
             className="block w-full group bg-gray-900 hover:bg-[#0993e2] p-2 rounded-[24px] transition-all duration-500 shadow-xl shadow-gray-200"
           >
             <div className="bg-white/10 group-hover:bg-[#4aa82c] rounded-[18px] p-6 flex items-center justify-between transition-colors">

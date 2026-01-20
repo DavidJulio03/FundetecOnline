@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import HeaderData from '../data/HeaderData';
 
 const Header = () => {
@@ -17,7 +18,6 @@ const Header = () => {
 
   return (
     <>
-      {/* --- CONTENEDOR PRINCIPAL DEL HEADER --- */}
       <div className={`fixed top-0 w-full z-[100] px-4 transition-all duration-500 
         ${isScrolled 
           ? 'py-3 bg-white/40 backdrop-blur-md border-b border-white/20' 
@@ -29,8 +29,8 @@ const Header = () => {
             : 'bg-white shadow-xl shadow-gray-200/50 border-white/10'}`}
         >
           
-          {/* --- SECCIÓN LOGO HÍBRIDO --- */}
-          <a href="/" className="flex items-center gap-4 group cursor-pointer">
+          {/* Logo con Link */}
+          <Link to="/" className="flex items-center gap-4 group cursor-pointer">
             <div className="relative flex items-center justify-center">
               {HeaderData.brand.logoUrl ? (
                 <img
@@ -56,27 +56,25 @@ const Header = () => {
                 {HeaderData.brand.subtitle}
               </span>
             </div>
-          </a>
+          </Link>
 
-          {/* --- DESKTOP NAVIGATION --- */}
+          {/* Desktop Nav con Link */}
           <nav className="hidden lg:flex items-center bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100">
             {HeaderData.navLinks.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="px-6 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-[#0993e2] hover:bg-white transition-all duration-200"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          {/* --- ACTIONS & MOBILE TOGGLE --- */}
           <div className="flex items-center gap-4">
-            
-            {/* BOTÓN CAMPUS VIRTUAL (Reemplaza a la card de Matrículas) */}
-            <a 
-              href={HeaderData.campusButton?.href || "#"}
+            {/* Botón Campus con Link */}
+            <Link 
+              to={HeaderData.campusButton?.href || "#"}
               className="hidden xl:flex items-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-white rounded-full border border-gray-200 transition-all group"
             >
               <span className="relative flex h-2 w-2">
@@ -86,18 +84,17 @@ const Header = () => {
               <span className="text-[10px] font-black text-gray-600 group-hover:text-[#0993e2] tracking-wider uppercase transition-colors">
                 {HeaderData.campusButton?.label || "Campus Virtual"}
               </span>
-            </a>
+            </Link>
 
-            {/* BOTÓN DE INSCRIPCIÓN (El principal) */}
-            <a 
-              href={HeaderData.actionButton.href}
+            {/* Botón Inscripción con Link */}
+            <Link 
+              to={HeaderData.actionButton.href}
               className="hidden sm:block px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-lg hover:brightness-110 active:scale-95 transition-all text-center"
               style={{ backgroundColor: HeaderData.actionButton.color }}
             >
               {HeaderData.actionButton.label}
-            </a>
+            </Link>
 
-            {/* Botón Menú Móvil */}
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="lg:hidden w-12 h-12 flex flex-col items-center justify-center bg-gray-900 rounded-2xl gap-1 hover:bg-gray-800 transition-colors"
@@ -115,7 +112,7 @@ const Header = () => {
         </header>
       </div>
 
-      {/* --- MENÚ MÓVIL FULLSCREEN --- */}
+      {/* Menú Móvil */}
       <div className={`fixed inset-0 z-[150] transition-all duration-500 ease-in-out 
         ${isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'}`}
       >
@@ -127,19 +124,16 @@ const Header = () => {
               <span className="font-black text-xl text-gray-900">{HeaderData.brand.name}</span>
               <span className="text-[10px] font-bold text-[#4aa82c] uppercase tracking-widest mt-1">Navegación</span>
             </div>
-            <button 
-              onClick={() => setIsMenuOpen(false)} 
-              className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-gray-800 text-xl font-light hover:bg-gray-200 transition-colors"
-            >
+            <button onClick={() => setIsMenuOpen(false)} className="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full text-gray-800 text-xl hover:bg-gray-200">
               ✕
             </button>
           </div>
 
           <nav className="flex-1 px-8 pt-12 flex flex-col gap-8">
             {HeaderData.navLinks.map((item, idx) => (
-              <a 
+              <Link 
                 key={item.name} 
-                href={item.href} 
+                to={item.href} 
                 className="group flex flex-col" 
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -149,16 +143,16 @@ const Header = () => {
                     {item.name}
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
             
-            {/* Campus en Móvil como un botón secundario */}
-            <a 
-              href={HeaderData.campusButton?.href || "#"}
-              className="mt-4 flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] bg-gray-100 text-gray-600 border border-gray-200 shadow-sm"
+            <Link 
+              to={HeaderData.campusButton?.href || "#"}
+              className="mt-4 flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-black text-xs uppercase bg-gray-100 text-gray-600 border border-gray-200"
+              onClick={() => setIsMenuOpen(false)}
             >
               {HeaderData.campusButton?.label || "Acceder al Campus"}
-            </a>
+            </Link>
           </nav>
 
           <div className="p-8 text-center bg-gray-50 border-t border-gray-100">

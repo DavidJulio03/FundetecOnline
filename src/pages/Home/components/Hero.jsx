@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import HeroData from '../data/HeroData';
 
 const Hero = () => {
@@ -39,12 +40,12 @@ const Hero = () => {
               {HeroData.description}
             </p>
 
-            {/* BOTONES COMO LINKS */}
+            {/* BOTONES ACTUALIZADOS A LINK */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start items-center">
               {HeroData.buttons.map((btn, index) => (
-                <a
+                <Link
                   key={index}
-                  href={btn.href}
+                  to={btn.href}
                   className={`w-full sm:w-auto px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all active:scale-95 flex items-center justify-center gap-3 ${
                     btn.primary 
                     ? "text-white shadow-xl shadow-[#4aa82c]/25 hover:shadow-[#4aa82c]/40 hover:-translate-y-1" 
@@ -58,7 +59,7 @@ const Hero = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   )}
-                </a>
+                </Link>
               ))}
             </div>
 

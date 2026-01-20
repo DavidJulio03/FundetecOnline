@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 import { ArrowRight, Clock, Star, GraduationCap, ChevronRight } from 'lucide-react';
 import ProgramsData from '../data/FeaturedProgramsData';
-
-
 
 const FeaturedPrograms = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,13 +52,13 @@ const FeaturedPrograms = () => {
             </h2>
           </div>
           
-          <a 
-            href={ProgramsData.header.catalogLink.href} 
+          <Link 
+            to={ProgramsData.header.catalogLink.href} 
             className="hidden md:flex items-center gap-3 text-gray-900 font-black text-sm uppercase tracking-widest group bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all"
           >
             {ProgramsData.header.catalogLink.label}
             <ArrowRight size={18} className="text-[#4aa82c] group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
         {/* --- GRID / CAROUSEL --- */}
@@ -98,14 +97,14 @@ const FeaturedPrograms = () => {
                   {prog.benefit}
                 </p>
                 
-                <a 
-                  href={prog.href}
+                <Link 
+                  to={prog.href}
                   className="w-full py-4 rounded-xl md:rounded-2xl bg-gray-50 text-[#0993e2] md:text-gray-900 font-black text-[11px] uppercase tracking-widest transition-all md:hover:bg-[#0993e2] md:hover:text-white active:scale-95 flex items-center justify-center gap-2 border border-gray-100 md:border-none"
                 >
                   Explorar Programa
                   <ChevronRight size={16} className="md:hidden" />
                   <GraduationCap size={18} className="hidden md:block" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
@@ -126,13 +125,13 @@ const FeaturedPrograms = () => {
 
         {/* --- FOOTER BUTTON MOBILE --- */}
         <div className="mt-8 flex justify-center md:hidden">
-          <a 
-            href={ProgramsData.header.catalogLink.href}
+          <Link 
+            to={ProgramsData.header.catalogLink.href}
             className="w-full flex items-center justify-center gap-3 text-gray-900 font-black text-[11px] uppercase tracking-widest bg-white py-5 rounded-2xl shadow-lg border border-gray-100 active:bg-gray-50"
           >
             {ProgramsData.header.catalogLink.label}
             <ArrowRight size={18} className="text-[#4aa82c]" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
