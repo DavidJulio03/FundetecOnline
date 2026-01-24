@@ -1,9 +1,30 @@
 import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
-import { Send, ChevronRight } from 'lucide-react';
+import { Send, ChevronRight, Loader2, CheckCircle2 } from 'lucide-react';
 import EnrollmentData from '../data/EnrollmentData';
+import { useContactForm } from '../hooks/useContactForm'; // Asegúrate de que la ruta sea correcta
 
 const Enrollment = () => {
+  // Inicializamos el hook con el correo del objeto de datos
+  const { sendForm, status } = useContactForm(EnrollmentData.email);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    // Enviamos el formulario
+    const success = await sendForm(formData);
+
+    if (success) {
+      // Limpiar formulario si fue exitoso
+      e.target.reset();
+      // Aquí podrías mostrar un Toast o Modal. Por ahora usamos un alert nativo.
+      alert("¡Solicitud enviada con éxito! Un asesor te contactará pronto.");
+    } else {
+      alert("Hubo un error al enviar. Por favor revisa tu conexión.");
+    }
+  };
+
   return (
     <section id={EnrollmentData.id} className="relative py-16 md:py-24 bg-white overflow-hidden">
       
@@ -15,7 +36,7 @@ const Enrollment = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           
-          {/* BLOQUE DE TEXTO */}
+          {/* BLOQUE DE TEXTO (Sin cambios visuales) */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <div className="inline-flex items-center gap-3 mb-4 lg:mb-6 justify-center lg:justify-start">
               <span className="w-6 h-[2px] bg-[#0993e2]"></span>
@@ -59,11 +80,15 @@ const Enrollment = () => {
                 <p className="text-gray-400 text-xs md:text-sm mt-1 font-medium">{EnrollmentData.form.subtitle}</p>
               </div>
 
-              <form className="space-y-4 md:space-y-5">
+              {/* FORMULARIO CONECTADO */}
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+                
                 <div className="group">
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">Nombre Completo</label>
                   <input 
                     type="text" 
+                    name="nombre" // Importante para el email
+                    required
                     placeholder="Ej. Juan Pérez"
                     className="w-full px-5 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border-2 border-transparent focus:border-[#0993e2]/20 focus:bg-white outline-none transition-all font-medium text-gray-900 text-sm md:text-base"
                   />
@@ -73,6 +98,8 @@ const Enrollment = () => {
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">WhatsApp</label>
                   <input 
                     type="tel" 
+                    name="telefono" // Importante para el email
+                    required
                     placeholder="300 123 4567"
                     className="w-full px-5 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border-2 border-transparent focus:border-[#0993e2]/20 focus:bg-white outline-none transition-all font-medium text-gray-900 text-sm md:text-base"
                   />
@@ -80,9 +107,12 @@ const Enrollment = () => {
 
                 <div className="group relative">
                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5 ml-1">¿Qué quieres estudiar?</label>
-                  <select className="w-full px-5 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border-2 border-transparent focus:border-[#0993e2]/20 focus:bg-white outline-none transition-all font-medium text-gray-700 text-sm md:text-base appearance-none cursor-pointer">
+                  <select 
+                    name="programa_interes" // Importante para el email
+                    className="w-full px-5 py-3.5 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border-2 border-transparent focus:border-[#0993e2]/20 focus:bg-white outline-none transition-all font-medium text-gray-700 text-sm md:text-base appearance-none cursor-pointer"
+                  >
                     {EnrollmentData.form.options.map((option, i) => (
-                      <option key={i}>{option}</option>
+                      <option key={i} value={option}>{option}</option>
                     ))}
                   </select>
                   <div className="absolute right-5 bottom-[14px] md:bottom-[18px] pointer-events-none text-gray-400">
@@ -90,19 +120,27 @@ const Enrollment = () => {
                   </div>
                 </div>
 
+                {/* BOTÓN CON ESTADOS DE CARGA */}
                 <button 
                   type="submit" 
-                  className="w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-white font-black text-[13px] md:text-sm uppercase tracking-[0.15em] shadow-lg shadow-[#4aa82c]/20 hover:shadow-[#4aa82c]/30 hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-3 mt-4"
-                  style={{ backgroundColor: '#4aa82c' }}
+                  disabled={status === 'loading' || status === 'success'}
+                  className={`w-full py-4 md:py-5 rounded-xl md:rounded-2xl text-white font-black text-[13px] md:text-sm uppercase tracking-[0.15em] shadow-lg shadow-[#4aa82c]/20 transition-all flex items-center justify-center gap-3 mt-4
+                    ${status === 'loading' ? 'bg-gray-400 cursor-wait' : 'bg-[#4aa82c] hover:shadow-[#4aa82c]/30 hover:-translate-y-0.5 active:scale-95'}
+                    ${status === 'success' ? 'bg-[#4aa82c] cursor-default' : ''}
+                  `}
                 >
-                  {EnrollmentData.form.buttonText}
-                  <Send size={16} className="md:w-[18px]" />
+                  {status === 'loading' ? (
+                    <>Enviando... <Loader2 size={18} className="animate-spin" /></>
+                  ) : status === 'success' ? (
+                    <>¡Enviado! <CheckCircle2 size={18} /></>
+                  ) : (
+                    <>{EnrollmentData.form.buttonText} <Send size={16} className="md:w-[18px]" /></>
+                  )}
                 </button>
 
                 <div className="pt-4 border-t border-gray-50">
-                  {/* Cambiado de <a> a <Link> para términos y privacidad */}
                   <Link 
-                    to={EnrollmentData.termsLink} 
+                    to={EnrollmentData.termsLink || "#"} 
                     className="block text-[10px] text-center text-gray-400 font-bold leading-tight uppercase tracking-tight hover:text-[#0993e2] transition-colors"
                   >
                     {EnrollmentData.form.privacyText}

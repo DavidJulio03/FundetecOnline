@@ -4,7 +4,7 @@ import HeroData from '../data/HeroData';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden flex items-center pt-30 md:pt-36 lg:pt-4">
+    <section className="relative min-h-screen bg-white overflow-hidden flex items-center py-8 md:py-24">
       
       {/* Fondo Geométrico */}
       <div 

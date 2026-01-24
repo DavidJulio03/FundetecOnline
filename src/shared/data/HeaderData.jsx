@@ -1,7 +1,7 @@
 const HeaderData = {
   brand: {
     name: "FUNDETEC",
-    subtitle: "Educación Técnica",
+    subtitle: "Con visión universitaria",
     logoUrl: 'https://lirp.cdn-website.com/d3af38d7/dms3rep/multi/opt/logo-640w.png',
     colors: {
       primary: '#4aa82c',
@@ -9,6 +9,7 @@ const HeaderData = {
     }
   },
   navLinks: [
+    { name: "Bachillerato", href: "/#bachillerato", desc: "Termina tus estudios rápido"},
     { name: "Programas", href: "/programas", desc: "Termina tus estudios rápido" },
     { name: "Nosotros", href: "/nosotros", desc: "Especializaciones cortas" },
     { name: "Preguntas Frecuentes", href: "/preguntas", desc: "Resolvemos tus dudas" },
@@ -28,7 +29,7 @@ const HeaderData = {
     phoneLink: "tel:3001234567"
   },
   campusButton: {
-    label: "Campus Virtual",
+    label: "Ingreso Estudiantes",
     href: "https://klicus.com.co/lp-profile/",
     color: "#0993e2"
   },

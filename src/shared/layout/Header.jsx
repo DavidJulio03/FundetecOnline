@@ -23,56 +23,58 @@ const Header = () => {
           ? 'py-3 bg-white/40 backdrop-blur-md border-b border-white/20' 
           : 'py-6 bg-transparent'}`}
       >
-        <header className={`max-w-7xl mx-auto h-20 flex items-center justify-between px-6 lg:px-10 transition-all duration-300 rounded-[28px]
+        <header className={`max-w-7xl mx-auto h-20 flex items-center transition-all duration-300 rounded-[28px] px-6 lg:px-10
           ${isScrolled 
             ? 'bg-white/90 backdrop-blur-md shadow-2xl shadow-blue-900/10 border-white/50' 
             : 'bg-white shadow-xl shadow-gray-200/50 border-white/10'}`}
         >
           
-          {/* Logo con Link */}
-          <Link to="/" className="flex items-center gap-4 group cursor-pointer">
-            <div className="relative flex items-center justify-center">
-              {HeaderData.brand.logoUrl ? (
-                <img
-                  src={HeaderData.brand.logoUrl}
-                  alt={HeaderData.brand.name}
-                  className="h-11 w-11 object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
-                />
-              ) : (
-                <div
-                  className="w-11 h-11 rounded-2xl flex items-center justify-center font-black text-white shadow-lg transition-transform duration-300 group-hover:rotate-12"
-                  style={{ backgroundColor: HeaderData.brand.colors.primary }}
-                >
-                  {HeaderData.brand.name.charAt(0)}
-                </div>
-              )}
-            </div>
+          {/* Logo: flex-1 para empujar desde la izquierda */}
+          <div className="flex-1 flex justify-start">
+            <Link to="/" className="flex items-center gap-4 group cursor-pointer">
+              <div className="relative flex items-center justify-center">
+                {HeaderData.brand.logoUrl ? (
+                  <img
+                    src={HeaderData.brand.logoUrl}
+                    alt={HeaderData.brand.name}
+                    className="h-11 w-11 object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className="w-11 h-11 rounded-2xl flex items-center justify-center font-black text-white shadow-lg transition-transform duration-300 group-hover:rotate-12"
+                    style={{ backgroundColor: HeaderData.brand.colors.primary }}
+                  >
+                    {HeaderData.brand.name.charAt(0)}
+                  </div>
+                )}
+              </div>
 
-            <div className="flex flex-col leading-none">
-              <span className="text-xl font-black tracking-tighter text-gray-800 uppercase">
-                {HeaderData.brand.name}
-              </span>
-              <span className="text-[9px] font-black text-[#0993e2] uppercase tracking-[0.2em] mt-1.5">
-                {HeaderData.brand.subtitle}
-              </span>
-            </div>
-          </Link>
+              <div className="hidden sm:flex flex-col leading-none">
+                <span className="text-xl font-black tracking-tighter text-gray-800 uppercase">
+                  {HeaderData.brand.name}
+                </span>
+                <span className="text-[9px] font-black text-[#0993e2] uppercase tracking-[0.2em]">
+                  {HeaderData.brand.subtitle}
+                </span>
+              </div>
+            </Link>
+          </div>
 
-          {/* Desktop Nav con Link */}
-          <nav className="hidden lg:flex items-center bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100">
+          {/* Desktop Nav: Centrado y con ancho dinámico */}
+          <nav className="hidden lg:flex items-center justify-center gap-1 h-fit bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100 mx-4">
             {HeaderData.navLinks.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className="px-6 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-[#0993e2] hover:bg-white transition-all duration-200"
+                className="px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-[#0993e2] hover:bg-white transition-all duration-200 whitespace-nowrap"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
-            {/* Botón Campus con Link */}
+          {/* Botones: flex-1 para empujar desde la derecha */}
+          <div className="flex-1 flex items-center justify-end gap-4">
             <Link 
               to={HeaderData.campusButton?.href || "#"}
               className="hidden xl:flex items-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-white rounded-full border border-gray-200 transition-all group"
@@ -82,14 +84,13 @@ const Header = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0993e2]"></span>
               </span>
               <span className="text-[10px] font-black text-gray-600 group-hover:text-[#0993e2] tracking-wider uppercase transition-colors">
-                {HeaderData.campusButton?.label || "Campus Virtual"}
+                {HeaderData.campusButton?.label || "Campus"}
               </span>
             </Link>
 
-            {/* Botón Inscripción con Link */}
             <Link 
               to={HeaderData.actionButton.href}
-              className="hidden sm:block px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-lg hover:brightness-110 active:scale-95 transition-all text-center"
+              className="hidden sm:block px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-lg hover:brightness-110 active:scale-95 transition-all text-center"
               style={{ backgroundColor: HeaderData.actionButton.color }}
             >
               {HeaderData.actionButton.label}

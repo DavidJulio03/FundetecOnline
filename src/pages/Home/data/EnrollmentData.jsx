@@ -1,6 +1,7 @@
 import { CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 
 const EnrollmentData = {
+  email: 'contactodavid03@gmail.com',
   id: "inscripcion",
   badge: "Admisiones 2024",
   title: {

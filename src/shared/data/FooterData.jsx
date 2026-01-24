@@ -4,20 +4,20 @@ const FooterData = {
   brand: {
     name: "FUNDETEC",
     letter: "F",
-    tagline: "Institución de Educación Superior",
+    tagline: "Con visión universitaria",
     logoUrl: "https://lirp.cdn-website.com/d3af38d7/dms3rep/multi/opt/logo-640w.png",
     mission: "Comprometidos con la formación integral y el desarrollo humano. Más de dos décadas liderando procesos educativos de calidad en todo el territorio nacional."
   },
   contact: [
     {
-      label: "Línea Nacional",
-      value: "+57 300 123 4567",
+      label: "WhatsApp",
+      value: "+57 305 3819779",
       icon: <Phone size={18} />,
       color: "text-[#4aa82c]"
     },
     {
       label: "Correo Oficial",
-      value: "info@fundetec.edu.co",
+      value: "info@fundetec.co",
       icon: <Mail size={18} />,
       color: "text-[#0993e2]"
     }
@@ -32,7 +32,7 @@ const FooterData = {
       title: "Programas",
       accent: "border-[#0993e2]",
       items: [
-        { label: "Validación de Bachillerato", href: "/programas" },
+        { label: "Validación de Bachillerato", href: "/#bachillerato" },
         { label: "Técnicos Laborales", href: "/programas" },
         { label: "Cursos de Especialización", href: "/programas" },
         { label: "Blog", href: "/blog" }

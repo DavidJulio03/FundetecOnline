@@ -25,9 +25,9 @@ function Home() {
   return (
     <div className="font-sans antialiased text-gray-800 bg-white min-h-screen">
       <Header />
+      <BachilleratoBanner/>
       <Hero />
       <Features />
-      <BachilleratoBanner/>
       <FeaturedPrograms />
       <Testimonials />
       <HowItWorks />

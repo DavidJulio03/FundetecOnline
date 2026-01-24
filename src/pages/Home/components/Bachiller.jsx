@@ -5,7 +5,7 @@ import BachillerData from '../data/BachillerData';
 
 const BachilleratoHero = () => {
   return (
-    <section className="relative bg-white py-8 md:py-24 overflow-hidden min-h-screen md:min-h-[850px] flex items-center">
+    <section id='bachillerato' className="relative bg-white py-8 md:py-24 pt-30 md:pt-36 lg:pt-44 overflow-hidden min-h-screen md:min-h-[850px] flex items-center">
       
       {/* FONDO GEOMÉTRICO */}
       <div className="absolute inset-0 z-0">

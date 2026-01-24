@@ -8,7 +8,7 @@ const BachillerData = {
   },
   description: (
     <>
-      Validación legal por ciclos diseñada para <strong className="text-gray-900 font-bold">adultos</strong>. Estudia a tu ritmo y obtén tu título oficial.
+      Validación legal por ciclos diseñada para <strong className="text-gray-900 font-bold">adultos</strong>. Estudia a tu ritmo y obtén tu título oficial de Bachiller Académico.
     </>
   ),
   actions: [
@@ -27,7 +27,7 @@ const BachillerData = {
   ],
   stats: [
     { label: "Graduados", val: "5k+", color: "text-[#0993e2]" },
-    { label: "Duración", val: "3 Meses", color: "text-[#4aa82c]" },
+    { label: "Duración", val: "4 Meses", color: "text-[#4aa82c]" },
     { label: "Legalidad", val: "100%", color: "text-gray-900" },
     { label: "Modalidad", val: "Virtual", color: "text-gray-900" }
   ],
