@@ -7,7 +7,6 @@ export const useContactForm = (targetEmail) => {
     setStatus('loading');
 
     try {
-      // Convertimos FormData a un objeto plano JSON
       const data = Object.fromEntries(formData.entries());
 
       const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
@@ -18,9 +17,9 @@ export const useContactForm = (targetEmail) => {
         },
         body: JSON.stringify({
             ...data,
-            _subject: "Nuevo Lead desde la Web (Inscripción)", // Asunto del correo
-            _template: "table", // Formato bonito en el correo
-            _captcha: "false"   // Desactiva captcha visual
+            _subject: "Nuevo Lead desde la Web (Inscripción)",
+            _template: "table",
+            _captcha: "false"
         })
       });
 
@@ -35,7 +34,6 @@ export const useContactForm = (targetEmail) => {
       setStatus('error');
       return false;
     } finally {
-      // Opcional: Volver a estado 'idle' después de unos segundos si quieres
       setTimeout(() => setStatus('idle'), 3000);
     }
   };
